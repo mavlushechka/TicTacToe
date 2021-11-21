@@ -2,18 +2,15 @@ package com.mavlushechka.tictactoe;
 
 import com.mavlushechka.tictactoe.exceptions.IncorrectCoordinatesDiapasonException;
 import com.mavlushechka.tictactoe.exceptions.OccupiedCellException;
+import com.mavlushechka.tictactoe.players.Player;
 
 import java.util.Scanner;
 
 public final class TicTacToe {
 
-    private static final char FIRST_PLAYER = 'X';
-
-    private static final char SECOND_PLAYER = 'O';
-
     private final char[][] cells = {{' ', ' ', ' '}, {' ', ' ', ' '}, {' ', ' ', ' '}};
 
-    private char currentPlayer = FIRST_PLAYER;
+    private char currentPlayer = Player.FIRST.SYMBOL;
 
     private boolean gameFinished = false;
 
@@ -34,7 +31,7 @@ public final class TicTacToe {
                 When all 9 squares are full, the game is over.
                 First player is %c. Players must enter the y and x coordinates separated by a space.
                 
-                """, FIRST_PLAYER, SECOND_PLAYER, FIRST_PLAYER);
+                """, Player.FIRST.SYMBOL, Player.SECOND.SYMBOL, Player.FIRST.SYMBOL);
     }
 
     private void showCells() {
@@ -81,7 +78,7 @@ public final class TicTacToe {
 
     private void move(byte y, byte x) {
         cells[y][x] = currentPlayer;
-        currentPlayer = (currentPlayer == FIRST_PLAYER) ? SECOND_PLAYER : FIRST_PLAYER;
+        currentPlayer = (currentPlayer == Player.FIRST.SYMBOL) ? Player.SECOND.SYMBOL : Player.FIRST.SYMBOL;
 
         showCells();
         checkLines();
